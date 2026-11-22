@@ -1,0 +1,167 @@
+/* ClassCard 단어 도우미 - 패널/강조 스타일 */
+
+#ccw-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 330px;
+  background: rgba(17, 24, 39, 0.96);
+  color: #f9fafb;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  z-index: 2147483647;
+  user-select: none;
+}
+
+#ccw-panel .ccw-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  cursor: move;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#ccw-panel .ccw-title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+#ccw-panel .ccw-mode {
+  margin-left: auto;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.25);
+  color: #c7d2fe;
+  white-space: nowrap;
+}
+
+#ccw-panel .ccw-min {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 2px;
+}
+#ccw-panel .ccw-min:hover { color: #fff; }
+
+#ccw-panel.ccw-minimized .ccw-body { display: none; }
+
+#ccw-panel .ccw-body { padding: 10px 12px 12px; }
+
+#ccw-panel .ccw-qa {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 8px 10px;
+  min-height: 52px;
+  user-select: text;
+}
+
+#ccw-panel .ccw-q { color: #d1d5db; font-size: 12px; word-break: break-all; }
+#ccw-panel .ccw-a { color: #34d399; font-weight: 700; font-size: 15px; margin-top: 3px; word-break: break-all; }
+#ccw-panel .ccw-c { color: #fbbf24; font-weight: 600; margin-top: 2px; }
+#ccw-panel .ccw-note { color: #9ca3af; font-size: 11px; }
+
+#ccw-panel .ccw-info {
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: #9ca3af;
+  user-select: text;
+}
+#ccw-panel .ccw-info b { color: #e5e7eb; }
+
+#ccw-panel .ccw-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 9px;
+  flex-wrap: wrap;
+}
+
+#ccw-panel .ccw-tg {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: #e5e7eb;
+}
+#ccw-panel .ccw-tg input { accent-color: #6366f1; cursor: pointer; }
+
+#ccw-panel .ccw-btn {
+  margin-left: auto;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+#ccw-panel .ccw-btn:hover { background: #6366f1; }
+
+#ccw-panel .ccw-delay {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+#ccw-panel .ccw-delay input {
+  width: 52px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  color: #f9fafb;
+  padding: 2px 5px;
+  font-size: 11px;
+}
+#ccw-panel .ccw-cnt { margin-left: auto; color: #fbbf24; font-weight: 600; }
+
+/* 정답 보기 강조 */
+.ccw-correct {
+  outline: 3px solid #22c55e !important;
+  outline-offset: 2px;
+  border-radius: 8px;
+  position: relative;
+}
+.ccw-correct::after {
+  content: "정답";
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  background: #22c55e;
+  color: #052e16;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 999px;
+  z-index: 2147483647;
+  font-family: "Malgun Gothic", sans-serif;
+}
+
+/* 토스트 */
+.ccw-toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translate(-50%, 16px);
+  background: rgba(17, 24, 39, 0.95);
+  color: #f9fafb;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-family: "Malgun Gothic", sans-serif;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 2147483647;
+  pointer-events: none;
+}
+.ccw-toast.show { opacity: 1; transform: translate(-50%, 0); }

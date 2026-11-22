@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "ClassCard 단어 도우미",
+  "version": "1.0.0",
+  "description": "클래스카드 단어 페이지를 자동으로 읽어 저장하고, 테스트 중 정답을 표시하거나 자동으로 풀이합니다.",
+  "permissions": ["storage", "activeTab", "unlimitedStorage"],
+  "host_permissions": [
+    "*://*.classcard.net/*",
+    "*://classcard.net/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ClassCard 단어 도우미"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.classcard.net/*",
+        "*://classcard.net/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "toggle-hint": {
+      "suggested_key": { "default": "Alt+Shift+H" },
+      "description": "정답 강조 켜기/끄기"
+    },
+    "toggle-auto": {
+      "suggested_key": { "default": "Alt+Shift+A" },
+      "description": "자동 풀이 켜기/끄기"
+    }
+  },
+  "icons": {
+    "16": "icons/icon128.png",
+    "48": "icons/icon128.png",
+    "128": "icons/icon128.png"
+  }
+}

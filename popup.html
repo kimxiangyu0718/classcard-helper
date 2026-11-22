@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 320px;
+      background: #111827;
+      color: #f9fafb;
+      font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+      font-size: 13px;
+      padding: 14px;
+    }
+    h1 { font-size: 15px; margin-bottom: 4px; }
+    .sub { color: #9ca3af; font-size: 11.5px; margin-bottom: 12px; }
+    .sub b { color: #a5b4fc; }
+    .card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 9px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .row + .row { margin-top: 8px; }
+    label.tg { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    label.tg input { accent-color: #6366f1; cursor: pointer; }
+    button {
+      background: #4f46e5; color: #fff; border: none; border-radius: 7px;
+      padding: 6px 10px; font-size: 12px; cursor: pointer;
+    }
+    button:hover { background: #6366f1; }
+    button.gray { background: #374151; }
+    button.gray:hover { background: #4b5563; }
+    button.red { background: #7f1d1d; }
+    button.red:hover { background: #991b1b; }
+    .sets { max-height: 170px; overflow-y: auto; }
+    .set {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 8px; border-radius: 6px;
+    }
+    .set:hover { background: rgba(255,255,255,0.05); }
+    .set .t { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; }
+    .set .n { color: #a5b4fc; font-size: 11px; white-space: nowrap; }
+    .set button { background: transparent; color: #9ca3af; padding: 2px 6px; font-size: 11px; }
+    .set button:hover { color: #f87171; background: transparent; }
+    .empty { color: #6b7280; font-size: 12px; padding: 8px; text-align: center; }
+    .btns { display: flex; gap: 6px; margin-top: 10px; }
+    .btns button { flex: 1; }
+  </style>
+</head>
+<body>
+  <h1>ClassCard 단어 도우미</h1>
+  <div class="sub" id="summary">사전 로딩 중...</div>
+
+  <div class="card">
+    <div class="row">
+      <label class="tg"><input type="checkbox" id="hint"> 정답 강조 (테두리 표시)</label>
+    </div>
+    <div class="row">
+      <label class="tg"><input type="checkbox" id="auto"> 자동 풀이</label>
+      <span style="color:#9ca3af;font-size:11px" id="pageMode"></span>
+    </div>
+    <div class="row">
+      <label class="tg"><input type="checkbox" id="ctl"> 오답 조절 (무작위로 틀리기)</label>
+      <span>
+        목표
+        <input type="number" id="target" min="80" max="100" step="5" style="width:52px;background:#1f2937;border:1px solid #374151;border-radius:5px;color:#f9fafb;padding:3px 5px;font-size:12px">점
+      </span>
+    </div>
+    <div class="row">
+      <span style="color:#9ca3af">클릭 지연(ms)</span>
+      <span>
+        <input type="number" id="dmin" min="0" step="100" style="width:56px;background:#1f2937;border:1px solid #374151;border-radius:5px;color:#f9fafb;padding:3px 5px;font-size:12px">
+        ~
+        <input type="number" id="dmax" min="0" step="100" style="width:56px;background:#1f2937;border:1px solid #374151;border-radius:5px;color:#f9fafb;padding:3px 5px;font-size:12px">
+      </span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row" style="margin-bottom:6px">
+      <b style="font-size:12px">저장된 세트</b>
+      <button id="rescan" class="gray" style="padding:3px 8px;font-size:11px">이 페이지 다시 저장</button>
+    </div>
+    <div class="sets" id="sets"><div class="empty">없음</div></div>
+  </div>
+
+  <div class="btns">
+    <button id="export">내보내기</button>
+    <button id="clear" class="red">전체 삭제</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
